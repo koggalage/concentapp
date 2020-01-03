@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>Daily Update</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label color="dark">Customer Registration No:</ion-label>
+      <ion-input type="text" value="{{customerInfo?.RegNo}}" name="RegNo" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark">Customer Name:</ion-label>
+      <ion-input type="text" value="{{customerInfo?.Fname}}" name="FullName" readonly></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-text color="primary">
+        <h4>Socio-Economics History</h4>
+      </ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark">Problem:</ion-label>
+      <ion-textarea type="text" [(ngModel)]="dailyUpdateSaveRequest.Problem" name="Problem">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark">Doctor Note:</ion-label>
+      <ion-textarea type="text" [(ngModel)]="dailyUpdateSaveRequest.DoctorNote" name="DoctorNote">
+      </ion-textarea>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list>
+    <div class="ion-padding">
+      <ion-button (click)="TakePhotos()" expand="full" color="dark">
+        Take Photo
+      </ion-button>
+    </div>
+  </ion-list>
+
+  <ion-list *ngFor="let photo of dailyUpdateSaveRequest.TreatmentImageURLs">
+    <ion-item>
+      <img src={{photo}} style="width: 200px; height: 150px;" />
+      <!-- <img src={{photo}} /> -->
+    </ion-item>
+  </ion-list>
+
+  <!-- <ion-item>
+    <ion-label color="dark">Base64:</ion-label>
+    <ion-textarea type="text" [(ngModel)]="tempBase64" name="Base64">
+    </ion-textarea>
+  </ion-item> -->
+
+  <ion-list>
+    <div class="ion-padding">
+      <ion-button (click)="onAddNewDailyUpdate()" expand="full" color="dark">
+        Save
+      </ion-button>
+    </div>
+  </ion-list>
+
+</ion-content>

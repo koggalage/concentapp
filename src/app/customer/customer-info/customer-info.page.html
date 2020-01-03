@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Missing Customer Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form (ngSubmit)="onUpdateCustomer()">
+
+    <ion-item *ngIf="isFnameNotFilled">
+      <ion-label color="dark" position="stacked">First Name:</ion-label>
+      <ion-input type="text" [(ngModel)]="customerInfo.Fname" name="FName" required></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="isLnameNotFilled">
+      <ion-label color="dark" position="stacked">Last Name:</ion-label>
+      <ion-input type="text" [(ngModel)]="customerInfo.Lname" name="LName" required></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="isDoBNotFilled">
+      <ion-label color="dark" position="stacked">DoB:</ion-label>
+      <ion-datetime display-format="DD/MM/YYYY" [(ngModel)]="customerInfo.DoB" name="DoB" required></ion-datetime>
+    </ion-item>
+
+    <ion-item *ngIf="isMobileNotFilled">
+      <ion-label color="dark" position="stacked">Mobile:</ion-label>
+      <ion-input type="number" [(ngModel)]="customerInfo.MobileNo" name="MobileNo" required></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="isEmailNotFilled">
+      <ion-label color="dark" position="stacked">Email:</ion-label>
+      <ion-input type="email" [(ngModel)]="customerInfo.Email" name="Email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-button type="submit" color="primary" expand="block">Save</ion-button>
+    </ion-item>
+
+  </form>
+
+</ion-content>

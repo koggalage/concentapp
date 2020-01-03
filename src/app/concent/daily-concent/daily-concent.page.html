@@ -1,0 +1,150 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="primary">Daily Concent Form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+
+    <ion-item>
+      <ion-label color="dark">Date:</ion-label>
+      <ion-input type="text" name="Date" [(ngModel)]="dailyConcentSaveRequest.ConsentDatetime" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark">Registration No:</ion-label>
+      <ion-input type="text" value="{{customerInfo?.RegNo}}" name="RegNo" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark">Full Name:</ion-label>
+      <ion-input type="text" value="{{customerInfo?.FullName}}" name="FullName" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark">DoB:</ion-label>
+      <ion-datetime display-format="DD/MM/YYYY" value="{{customerInfo?.DoB}}" name="DoB" readonly></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark">Gendar:</ion-label>
+      <ion-input type="text" value="{{customerInfo?.Gender}}" name="Gender" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark">Email:</ion-label>
+      <ion-input type="text" value="{{customerInfo?.Email}}" name="Email" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark">Address:</ion-label>
+      <ion-textarea type="text" value="{{customerInfo?.Address}}" name="Address" readonly></ion-textarea>
+    </ion-item>
+
+  </ion-list>
+
+
+  <form (ngSubmit)="onAddNewDailyConcent()">
+
+
+
+    <ion-item>
+      <ion-label color="dark">Treatment:</ion-label>
+      <ion-textarea type="text" [(ngModel)]="dailyConcentSaveRequest.NameOfTheTreatment" name="Treatment">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark">Previous Treatments:</ion-label>
+      <ion-textarea type="text" [(ngModel)]="dailyConcentSaveRequest.PreviousListOfTreatment" name="PreviousTreatments">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>For Myself:</ion-label>
+      <ion-checkbox [(ngModel)]="myself" name="self"></ion-checkbox>
+    </ion-item>
+
+    <ion-item *ngIf="myself">
+      <ion-item>
+        <ion-label color="dark">NIC:</ion-label>
+        <ion-input type="text" [(ngModel)]="dailyConcentSaveRequest.Nic" name="NIC"></ion-input>
+      </ion-item>
+    </ion-item>
+
+    <ion-item *ngIf="!myself">
+
+      <ion-item>
+        <ion-label color="dark">Name of Relative:</ion-label>
+        <ion-input type="text" [(ngModel)]="dailyConcentSaveRequest.RelativeName" name="RelativeName"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="dark">Relationship:</ion-label>
+        <ion-input type="text" [(ngModel)]="dailyConcentSaveRequest.Relationship" name="Relationship"></ion-input>
+      </ion-item>
+
+    </ion-item>
+
+    <ion-item>
+      <ion-toolbar>
+        <ion-label color="dark">Customer Agreement:</ion-label>
+      </ion-toolbar>
+
+      <!-- ---- -->
+      <ion-row>
+        <ion-col>
+          <ion-img [src]="customerInfo?.SignatureURL"></ion-img>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-label>Agreed:</ion-label>
+      <ion-checkbox (change)='onChange()' name="agreed"></ion-checkbox>
+      <!-- --- -->
+    </ion-item>
+
+    <ion-item>
+      <ion-text color="danger">
+        <h4>* For Office Use Only</h4>
+      </ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-toolbar>
+        <ion-label color="dark">Therapist Agreement:</ion-label>
+      </ion-toolbar>
+
+      <!-- ----- -->
+
+      <ion-row>
+        <ion-col>
+          <ion-img [src]="preview_url"></ion-img>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-label>Agreed:</ion-label>
+      <ion-checkbox (change)='onChange()' name="agreed"></ion-checkbox>
+
+      <!-- ---- -->
+    </ion-item>
+
+    <ion-item>
+      <ion-toolbar>
+        <ion-label color="dark">Medical Officer Agreement:</ion-label>
+      </ion-toolbar>
+
+      <!-- <app-agreement-form [url]='url' (startNewChatSelected)='thisOnChange()'></app-agreement-form> -->
+    </ion-item>
+
+    <ion-item>
+      <ion-button type="submit" color="primary" expand="block">Save</ion-button>
+    </ion-item>
+
+  </form>
+</ion-content>

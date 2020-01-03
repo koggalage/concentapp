@@ -1,0 +1,257 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Initial Assesment Form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-text color="primary">
+        <h4>Patient Information</h4>
+      </ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark">Registration No:</ion-label>
+      <ion-input type="text" value="{{customerInfo?.RegNo}}" name="RegNo" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark">Full Name:</ion-label>
+      <ion-input type="text" value="{{customerInfo?.FullName}}" name="FullName" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark">DoB:</ion-label>
+      <ion-datetime display-format="DD/MM/YYYY" value="{{customerInfo?.DoB}}" name="DoB" readonly></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark">Gendar:</ion-label>
+      <ion-input type="text" value="{{customerInfo?.Gender}}" name="Gender" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark">Email:</ion-label>
+      <ion-input type="text" value="{{customerInfo?.Email}}" name="Email" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark">Address:</ion-label>
+      <ion-textarea type="text" value="{{customerInfo?.Address}}" name="Address" readonly></ion-textarea>
+    </ion-item>
+
+  </ion-list>
+
+  <form (ngSubmit)="onAddNewInitConcent()">
+
+    <ion-list>
+
+      <ion-item>
+        <ion-text color="primary">
+          <h4>Medical History</h4>
+        </ion-text>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Diabetes:</ion-label>
+        <ion-checkbox [(ngModel)]="initConcentSaveRequest.IsDiabetes" name="IsDiabetes"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Hypertension:</ion-label>
+        <ion-checkbox [(ngModel)]="initConcentSaveRequest.IsHypertension" name="IsHypertension"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Heart Disease:</ion-label>
+        <ion-checkbox [(ngModel)]="initConcentSaveRequest.IsHeartDisease" name="IsHeartDisease"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Asthma:</ion-label>
+        <ion-checkbox [(ngModel)]="initConcentSaveRequest.IsAsthma" name="IsAsthma"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Sinusitis:</ion-label>
+        <ion-checkbox [(ngModel)]="initConcentSaveRequest.IsSinusitis" name="IsSinusitis"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Hyperlipidemia:</ion-label>
+        <ion-checkbox [(ngModel)]="initConcentSaveRequest.IsHyperlipidemia" name="IsHyperlipidemia"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Other (Please Specify):</ion-label>
+        <ion-checkbox [(ngModel)]="initConcentSaveRequest.IsOther" name="IsOther"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label *ngIf="initConcentSaveRequest.IsOther" color="dark">Other Diseases:</ion-label>
+        <ion-textarea type="text" [(ngModel)]="initConcentSaveRequest.OtherDiseases" name="OtherDiseases">
+        </ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Surgical History? (If yes, please Specify):</ion-label>
+        <ion-checkbox [(ngModel)]="initConcentSaveRequest.IsSurgical" name="IsSurgical"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label *ngIf="initConcentSaveRequest.IsSurgical" color="dark">Surgical History:</ion-label>
+        <ion-textarea type="text" [(ngModel)]="initConcentSaveRequest.SurgicalHistory" name="SurgicalHistory">
+        </ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="dark">Current Medication:</ion-label>
+        <ion-textarea type="text" [(ngModel)]="initConcentSaveRequest.CurrentMedication" name="CurrentMedication">
+        </ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Known Allergies? (If yes, please Specify):</ion-label>
+        <ion-checkbox [(ngModel)]="initConcentSaveRequest.IsAllergies" name="IsAllergies"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label *ngIf="initConcentSaveRequest.IsAllergies" color="dark">Known Allergies:</ion-label>
+        <ion-textarea type="text" [(ngModel)]="initConcentSaveRequest.KnownAllergies" name="KnownAllergies">
+        </ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Any Menstrual Abnormalities? (If yes, please Specify):</ion-label>
+        <ion-checkbox [(ngModel)]="initConcentSaveRequest.IsMenstrualAbnormalities" name="IsMenstrualAbnormalities">
+        </ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label *ngIf="initConcentSaveRequest.IsAllergies" color="dark">Menstrual Abnormalities:</ion-label>
+        <ion-textarea type="text" [(ngModel)]="initConcentSaveRequest.MenstrualAbnormalities"
+          name="MenstrualAbnormalities">
+        </ion-textarea>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-list>
+
+      <ion-item>
+        <ion-text color="primary">
+          <h4>Socio-Economics History</h4>
+        </ion-text>
+      </ion-item>
+
+      <ion-item>
+
+        <ion-radio-group>
+
+          <ion-row>
+
+            <ion-col>
+              <ion-label color="dark" position="stacked">Married:</ion-label>
+              <ion-radio [value]="true" [(ngModel)]="initConcentSaveRequest.IsMarried" name="Married"></ion-radio>
+            </ion-col>
+
+            <ion-col>
+              <ion-label color="dark" position="stacked">Unmarried:</ion-label>
+              <ion-radio [value]="false" [(ngModel)]="initConcentSaveRequest.IsMarried" name="Unmarried"></ion-radio>
+            </ion-col>
+
+          </ion-row>
+
+        </ion-radio-group>
+
+        <ion-radio-group>
+
+          <ion-row>
+
+            <ion-col>
+              <ion-label color="dark" position="stacked">Smoker:</ion-label>
+              <ion-radio [value]="true" [(ngModel)]="initConcentSaveRequest.IsSmoker" name="Smoker"></ion-radio>
+            </ion-col>
+
+            <ion-col>
+              <ion-label color="dark" position="stacked">Non Smoker:</ion-label>
+              <ion-radio [value]="false" [(ngModel)]="initConcentSaveRequest.IsSmoker" name="NonSmoker"></ion-radio>
+            </ion-col>
+
+          </ion-row>
+
+        </ion-radio-group>
+
+        <ion-radio-group>
+
+          <ion-row>
+
+            <ion-col>
+              <ion-label color="dark" position="stacked">Alcoholic:</ion-label>
+              <ion-radio [value]="true" [(ngModel)]="initConcentSaveRequest.IsAlcoholic" name="Alcoholic"></ion-radio>
+            </ion-col>
+
+            <ion-col>
+              <ion-label color="dark" position="stacked">Non Alcoholic:</ion-label>
+              <ion-radio [value]="false" [(ngModel)]="initConcentSaveRequest.IsAlcoholic" name="NonAlcoholic">
+              </ion-radio>
+            </ion-col>
+
+          </ion-row>
+
+        </ion-radio-group>
+
+      </ion-item>
+
+    </ion-list>
+
+    <ion-list>
+
+      <ion-item>
+        <ion-text color="primary">
+          <h4>General Skin Care Informaation</h4>
+        </ion-text>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="dark">Skin Care Products and Brands curruntly use:</ion-label>
+        <ion-textarea type="text" [(ngModel)]="initConcentSaveRequest.CurrentyUsedProducts" name="CurrentyUsedProducts">
+        </ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Any Skin Treatments had before? (If yes, please Specify):</ion-label>
+        <ion-checkbox [(ngModel)]="initConcentSaveRequest.AnySkinTreatments" name="AnySkinTreatments"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label *ngIf="initConcentSaveRequest.AnySkinTreatments" color="dark">Menstrual Abnormalities:</ion-label>
+        <ion-textarea type="text" [(ngModel)]="initConcentSaveRequest.PreviousSkinTreatments"
+          name="PreviousSkinTreatments">
+        </ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-toolbar>
+          <ion-label color="dark">Customer Agreement:</ion-label>
+        </ion-toolbar>
+
+        <!-- <app-agreement-form></app-agreement-form> -->
+      </ion-item>
+
+      <ion-item>
+        <ion-button type="submit" color="primary" expand="block">Save</ion-button>
+      </ion-item>
+
+    </ion-list>
+
+  </form>
+
+</ion-content>

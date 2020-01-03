@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title color="primary">Customer Registration</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="onAddNewCustomer()">
+
+    <ion-item>
+      <ion-label color="dark" position="stacked">Registration No:</ion-label>
+      <ion-input type="text" [(ngModel)]="customerInfo.RegNo" name="RegNo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark" position="stacked">First Name:</ion-label>
+      <ion-input type="text" [(ngModel)]="customerInfo.Fname" name="FName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark" position="stacked">Last Name:</ion-label>
+      <ion-input type="text" [(ngModel)]="customerInfo.Lname" name="LName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark" position="stacked">DoB:</ion-label>
+      <ion-datetime display-format="DD/MM/YYYY" [(ngModel)]="customerInfo.DoB" name="DoB"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark" position="stacked">Mobile:</ion-label>
+      <ion-input type="number" [(ngModel)]="customerInfo.MobileNo" name="MobileNo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark" position="stacked">Home Phone:</ion-label>
+      <ion-input type="number" [(ngModel)]="customerInfo.HomePhone" name="HomePhone"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark" position="stacked">Email:</ion-label>
+      <ion-input type="email" [(ngModel)]="customerInfo.Email" name="Email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark" position="stacked">Profession:</ion-label>
+      <ion-input type="text" [(ngModel)]="customerInfo.Profession" name="Profession"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark" position="stacked">Address:</ion-label>
+      <ion-textarea type="text" [(ngModel)]="customerInfo.Address" name="Address"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+
+      <ion-radio-group>
+
+        <ion-row>
+
+          <ion-col>
+            <ion-label color="dark" position="stacked">Female:</ion-label>
+            <ion-radio [value]="customerInfo.Gender"></ion-radio>
+          </ion-col>
+
+          <ion-col>
+            <ion-label color="dark" position="stacked">Male:</ion-label>
+            <ion-radio [value]="customerInfo.Gender"></ion-radio>
+          </ion-col>
+
+        </ion-row>
+
+      </ion-radio-group>
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label color="dark" position="stacked">Signature:</ion-label>
+
+      <signature-pad [options]="signaturePadOptions" (onEndEvent)="drawComplete()">
+      </signature-pad>
+
+    </ion-item>
+
+    <ion-item>
+      <input type="button" name="fota" value="Clear" (click)="drawClear()">
+    </ion-item>
+
+    <ion-item>
+      <ion-button type="submit" color="primary" expand="block">Save</ion-button>
+    </ion-item>
+
+  </form>
+</ion-content>
